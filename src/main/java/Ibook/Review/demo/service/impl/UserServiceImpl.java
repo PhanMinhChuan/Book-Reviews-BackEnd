@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Transactional
     public UserDetails loadUserById(int id) {
         User user = userRepository.findById(id);
-        return new CustomUserDetails(user.getId(), user.getUsername(), user.getPassword(), user.getRole());
+         return new CustomUserDetails(user.getId(), user.getUsername(), user.getPassword(), user.getRole());
     }
 
 }

@@ -13,7 +13,8 @@ public interface CommentService {
 
     Page<Comment> findAllComment(Integer page, Integer size);
 
-    void deleted(long id);
+    Page<Comment> findAllCommentByIdBook(long idBook, Integer page, Integer size);
 
+    void deleted(long id);
 
 }

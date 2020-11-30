@@ -4,12 +4,13 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document
+@Document(collection = "categories")
 public class Categories {
+
     @Id
     private long id;
 
-    @Field
+    @Field(value = "name")
     private String name;
 
     public Categories(long id, String name){

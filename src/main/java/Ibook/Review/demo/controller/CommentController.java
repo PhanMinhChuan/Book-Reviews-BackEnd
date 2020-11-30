@@ -29,9 +29,18 @@ public class CommentController {
         return new ResponseEntity<>(commentService.findAllComment(page, size).getContent(), HttpStatus.OK);
     }
 
+    // thiếu 2 api tìm theo iduser và idbook
+    @GetMapping(path = "{idBook}", consumes = "application/json")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<Comment>> findAllCommentByIdBook(@RequestParam(value="page", defaultValue = Const.NUMBER_PAGE_START_DEFAULT) Integer page,
+                                                                @RequestParam(value="size", defaultValue = Const.NUMBER_SIZE_PAGE_DEFAULT) Integer size,
+                                                                @PathVariable Long idBook) {
+        return new ResponseEntity<>(commentService.findAllCommentByIdBook(idBook, page, size).getContent(), HttpStatus.OK);
+    }
+
     @DeleteMapping(path = "{/id}", consumes = "application/json")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> deletedComment(@PathVariable long id ) {
+    public ResponseEntity<Void> deletedComment(@PathVariable Long id ) {
         commentService.deleted(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

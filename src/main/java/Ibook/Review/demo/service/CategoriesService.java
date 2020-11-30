@@ -1,19 +1,23 @@
 package Ibook.Review.demo.service;
 
 import Ibook.Review.demo.entity.Categories;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public interface CategoriesService {
-    public Categories getCategories(long id);
 
-    public List<Categories> getAllCategories();
+    public Categories getCatById(long id);
 
-    public boolean addCategories(Categories categories);
+    public Page<Categories> getAllCategories(Integer page, Integer size);
+
+    public void addCategories(Categories categories);
 
     public boolean deleteCategories(long id);
 
-    public boolean updateCategories(Categories categories);
+    public boolean updateCategories(long id, Categories categories);
+
+    Integer getSize();
 }

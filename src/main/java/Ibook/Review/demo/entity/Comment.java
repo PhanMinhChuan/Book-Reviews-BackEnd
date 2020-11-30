@@ -33,7 +33,7 @@ public class Comment {
         return idBook;
     }
 
-    public void setIdIdBook(long idBook) {
+    public void setIdBook(long idBook) {
         this.idBook = idBook;
     }
 
@@ -41,7 +41,7 @@ public class Comment {
         return idUser;
     }
 
-    public void setIdIdUser(long idUser) {
+    public void setIdUser(long idUser) {
         this.idUser = idUser;
     }
 
@@ -49,7 +49,7 @@ public class Comment {
         return comment;
     }
 
-    public void setIdIdUser(String comment) {
+    public void setComment(String comment) {
         this.comment = comment;
     }
 

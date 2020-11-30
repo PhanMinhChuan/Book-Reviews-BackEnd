@@ -9,7 +9,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/books")
+@RequestMapping("books")
 public class BookController {
     @Autowired
     private BookService bookService;

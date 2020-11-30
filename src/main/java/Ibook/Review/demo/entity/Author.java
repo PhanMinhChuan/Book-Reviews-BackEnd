@@ -6,11 +6,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.text.DateFormat;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
 @Document(collection = "author")
 public class Author {
+
     @Id
     private long id;
 
@@ -18,7 +20,7 @@ public class Author {
     private String name;
 
     @Field(value = "birth")
-    private DateFormat birth;
+    private LocalDateTime birth;
 
     @Field(value = "sex")
     private Status.STATUS_AUTHOR sex;
@@ -42,11 +44,11 @@ public class Author {
         this.name = name;
     }
 
-    public DateFormat getBrith() {
+    public LocalDateTime getBrith() {
         return birth;
     }
 
-    public void setBirth(DateFormat birth) {
+    public void setBirth(LocalDateTime birth) {
         this.birth = birth;
     }
 
@@ -70,7 +72,7 @@ public class Author {
         super();
     }
 
-    public Author(long id, String name, DateFormat birth, Status.STATUS_AUTHOR sex, List<Long> idCat) {
+    public Author(long id, String name, LocalDateTime birth, Status.STATUS_AUTHOR sex, List<Long> idCat) {
         super();
         this.id = id;
         this.name = name;

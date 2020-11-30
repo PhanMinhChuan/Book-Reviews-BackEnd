@@ -7,18 +7,18 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
 
-@Document
+@Document(collection = "book")
 public class Book {
 
-    @Indexed
+    //@Indexed
     @Id
     private long id;
 
-    @Field
+    @Field("name")
     private String name;
 
     @Field("idCat")
-    private List<Long> idCategories;
+    private List<Long> idCat;
 
     @Field("idAuthor")
     private List<Long> idAuthor;
@@ -49,11 +49,11 @@ public class Book {
     }
 
     public List<Long> getIdCategories() {
-        return idCategories;
+        return idCat;
     }
 
-    public void setIdCategories(List<Long> idCategories) {
-        this.idCategories = idCategories;
+    public void setIdCategories(List<Long> idCat) {
+        this.idCat = idCat;
     }
 
     public List<Long> getIdAuthor() {
@@ -85,6 +85,20 @@ public class Book {
     }
 
     public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Book () {
+        super();
+    }
+
+    public Book (long id, String name, List<Long> idCat, List<Long> idAuthor, String description, String detail, String image) {
+        this.id = id;
+        this.name = name;
+        this.idCat = idCat;
+        this.idAuthor = idAuthor;
+        this.description = description;
+        this.detail = detail;
         this.image = image;
     }
 }

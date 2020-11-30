@@ -4,6 +4,9 @@ import Ibook.Review.demo.entity.Categories;
 import Ibook.Review.demo.repository.CategoriesRepository;
 import Ibook.Review.demo.service.CategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,21 +17,22 @@ public class CategoriesServiceImlp implements CategoriesService {
     @Autowired
     private CategoriesRepository categoriesRepository;
 
-    public Categories getCategories(long id){
+    public Categories getCatById(long id){
         return categoriesRepository.findById(id).get();
+        //return null;
     }
 
-    public List<Categories> getAllCategories(){
-        return categoriesRepository.findAll();
+    public Page<Categories> getAllCategories(Integer page, Integer size){
+        Pageable pageable = PageRequest.of(page, size);
+        return categoriesRepository.findAll(pageable);
     }
 
-    public boolean addCategories(Categories categories){
-        if(!categoriesRepository.existsByName(categories.getName())) {
-            categories.setId(categoriesRepository.count());
-            categoriesRepository.save(categories);
-            return true;
-        }
-        else return false;
+
+    public void addCategories(Categories categories){
+        //if(!categoriesRepository.existsByName(categories.getName())) {
+        categories.setId(categoriesRepository.findAll().get(categoriesRepository.findAll().size() - 1).getId() + 1);
+        categoriesRepository.save(categories);
+        //}
     }
 
     public boolean deleteCategories(long id){
@@ -39,11 +43,20 @@ public class CategoriesServiceImlp implements CategoriesService {
         else return false;
     }
 
-    public boolean updateCategories(Categories categories){
+    public boolean updateCategories(long id, Categories categories){
         if(categoriesRepository.existsById(categories.getId())){
-            categoriesRepository.insert(categories);
+            Categories cat = categoriesRepository.findById(id).get();
+
+            cat.setName(categories.getName());
+            categoriesRepository.save(cat);
+            //categoriesRepository.insert(categories);
             return true;
         }
         else return false;
+    }
+
+    @Override
+    public Integer getSize() {
+        return categoriesRepository.findAll().size();
     }
 }
