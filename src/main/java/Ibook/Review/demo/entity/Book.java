@@ -2,6 +2,7 @@ package Ibook.Review.demo.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -17,11 +18,13 @@ public class Book {
     @Field("name")
     private String name;
 
-    @Field("idCat")
-    private List<Long> idCat;
+    @Field("cats")
+    @DBRef
+    private List<Categories> cats;
 
-    @Field("idAuthor")
-    private List<Long> idAuthor;
+    @Field("authors")
+    @DBRef
+    private Author authors;
 
     @Field("description")
     private String description;
@@ -48,20 +51,20 @@ public class Book {
         this.name = name;
     }
 
-    public List<Long> getIdCategories() {
-        return idCat;
+    public List<Categories> getCategories() {
+        return cats;
     }
 
-    public void setIdCategories(List<Long> idCat) {
-        this.idCat = idCat;
+    public void setCategories(List<Categories> cats) {
+        this.cats = cats;
     }
 
-    public List<Long> getIdAuthor() {
-        return idAuthor;
+    public Author getAuthors() {
+        return authors;
     }
 
-    public void setIdAuthor(List<Long> idAuthor) {
-        this.idAuthor = idAuthor;
+    public void setAuthors(Author authors) {
+        this.authors = authors;
     }
 
     public String getDescription() {
@@ -92,11 +95,11 @@ public class Book {
         super();
     }
 
-    public Book (long id, String name, List<Long> idCat, List<Long> idAuthor, String description, String detail, String image) {
+    public Book (long id, String name, List<Categories> cats, Author authors, String description, String detail, String image) {
         this.id = id;
         this.name = name;
-        this.idCat = idCat;
-        this.idAuthor = idAuthor;
+        this.cats = cats;
+        this.authors = authors;
         this.description = description;
         this.detail = detail;
         this.image = image;

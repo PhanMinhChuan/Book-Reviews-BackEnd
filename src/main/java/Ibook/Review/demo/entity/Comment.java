@@ -1,6 +1,7 @@
 package Ibook.Review.demo.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -12,11 +13,13 @@ public class Comment {
     @Id
     private long id;
 
-    @Field(value = "idBook")
-    private long idBook;
+    @Field(value = "book")
+    @DBRef
+    private Book book;
 
-    @Field(value = "idUser")
-    private long idUser;
+    @Field(value = "user")
+    @DBRef
+    private User user;
 
     @Field(value = "comment")
     private String comment;
@@ -29,20 +32,20 @@ public class Comment {
         this.id = id;
     }
 
-    public long getIdBook() {
-        return idBook;
+    public Book getBook() {
+        return book;
     }
 
-    public void setIdBook(long idBook) {
-        this.idBook = idBook;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
-    public long getIdUser() {
-        return idUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdUser(long idUser) {
-        this.idUser = idUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getComment() {
@@ -57,11 +60,11 @@ public class Comment {
         super();
     }
 
-    public Comment (long id, long idBook, long idUser, String comment) {
+    public Comment (long id, Book book, User user, String comment) {
         super();
         this.id = id;
-        this.idBook = idBook;
-        this.idUser = idUser;
+        this.book = book;
+        this.user = user;
         this.comment = comment;
     }
 

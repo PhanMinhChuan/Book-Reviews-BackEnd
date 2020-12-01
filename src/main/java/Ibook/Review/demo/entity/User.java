@@ -2,6 +2,7 @@ package Ibook.Review.demo.entity;
 
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -20,8 +21,9 @@ public class User {
     //@Column(name = "password", length = 100, nullable = false)
     private String password;
 
-    @Field(value = "idJob")
-    private List<Long> idJob;
+    @Field(value = "books")
+    @DBRef
+    private List<Book> books;
 
     @Field(value = "role")
     private String role;
@@ -50,12 +52,12 @@ public class User {
         this.password = password;
     }
 
-    public List<Long> getIdJob() {
-        return idJob;
+    public List<Book> getBooks() {
+        return books;
     }
 
-    public void setIdJob(List<Long> idJob) {
-        this.idJob = idJob;
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     public String getRole() {
@@ -66,11 +68,11 @@ public class User {
         this.role = role;
     }
 
-    public User(long id, String username, String password, List<Long> idJob, String role) {
+    public User(long id, String username, String password, List<Book> books, String role) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.idJob = idJob;
+        this.books = books;
         this.role = role;
     }
 

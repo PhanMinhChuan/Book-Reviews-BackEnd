@@ -17,7 +17,7 @@ public interface CategoriesService {
 
     public boolean deleteCategories(long id);
 
-    public boolean updateCategories(long id, Categories categories);
+    public void updateCategories(long id, Categories categories);
 
     Integer getSize();
 }

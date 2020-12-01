@@ -49,8 +49,8 @@ public class CategoriesController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public boolean updateCategories(@PathVariable Long id, @RequestBody @Valid Categories categories){
-        return categoriesService.updateCategories(id, categories);
+    public void updateCategories(@PathVariable Long id, @RequestBody @Valid Categories categories){
+        categoriesService.updateCategories(id, categories);
     }
 
     @DeleteMapping("/{id}")

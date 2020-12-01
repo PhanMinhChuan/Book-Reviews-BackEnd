@@ -37,7 +37,7 @@ public class AuthorServiceImpl implements AuthorService {
         authorEx.setName(author.getName());
         authorEx.setSex(author.getSex());
         authorEx.setBirth(author.getBrith());
-        authorEx.setIdCat(author.getIdCat());
+        authorEx.setCategories(author.getCategories());
 
         authorRepository.save(authorEx);
     }

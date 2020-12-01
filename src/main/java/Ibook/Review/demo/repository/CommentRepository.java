@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface CommentRepository extends MongoRepository<Comment, Long> {
 
-    List<Comment> findAllByIdBook(Long idBook);
+    //List<Comment> findAllByIdBook(Long idBook);
 
 }

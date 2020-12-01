@@ -31,7 +31,7 @@ public class CommentServiceImpl implements CommentService {
         List<Comment> listComment = commentRepository.findAll();
         List<Comment> listCommentNew = new ArrayList<>();
         for (Comment item : listComment) {
-            if (item.getIdBook() == idBook) {
+            if (item.getBook().getId() == idBook) {
                 listCommentNew.add(item);
             }
         }

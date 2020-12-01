@@ -2,6 +2,7 @@ package Ibook.Review.demo.entity;
 
 import Ibook.Review.demo.CommonUtil.Status;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -25,8 +26,9 @@ public class Author {
     @Field(value = "sex")
     private Status.STATUS_AUTHOR sex;
 
-    @Field(value = "idCat")
-    private List<Long> idCat;
+    @Field(value = "cats")
+    @DBRef
+    private List<Categories> cats;
 
     public long getId() {
         return id;
@@ -60,25 +62,25 @@ public class Author {
         this.sex = sex;
     }
 
-    public List<Long> getIdCat() {
-        return idCat;
+    public List<Categories> getCategories() {
+        return cats;
     }
 
-    public void setIdCat(List<Long> idCat) {
-        this.idCat = idCat;
+    public void setCategories(List<Categories> cats) {
+        this.cats = cats;
     }
 
     public Author() {
         super();
     }
 
-    public Author(long id, String name, LocalDateTime birth, Status.STATUS_AUTHOR sex, List<Long> idCat) {
+    public Author(long id, String name, LocalDateTime birth, Status.STATUS_AUTHOR sex, List<Categories> cats ) {
         super();
         this.id = id;
         this.name = name;
         this.birth = birth;
         this.sex = sex;
-        this.idCat = idCat;
+        this.cats = cats;
     }
 
 }

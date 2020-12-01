@@ -43,16 +43,16 @@ public class CategoriesServiceImlp implements CategoriesService {
         else return false;
     }
 
-    public boolean updateCategories(long id, Categories categories){
-        if(categoriesRepository.existsById(categories.getId())){
+    public void updateCategories(long id, Categories categories){
+        //if(categoriesRepository.existsById(categories.getId())){
             Categories cat = categoriesRepository.findById(id).get();
 
             cat.setName(categories.getName());
             categoriesRepository.save(cat);
             //categoriesRepository.insert(categories);
-            return true;
-        }
-        else return false;
+            //return true;
+        //}
+        //else return false;
     }
 
     @Override

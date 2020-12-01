@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void update(long id, User userUpdate) {
         User user = userRepository.findById(id);
         user.setPassword(userUpdate.getPassword());
-        user.setIdJob(userUpdate.getIdJob());
+        user.setBooks(userUpdate.getBooks());
         userRepository.save(user);
     }
 
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             User userEx = new User();
             userEx.setUsername(user.getUsername());
             userEx.setPassword(passwordEncoder.encode(user.getPassword()));
-            userEx.setIdJob(user.getIdJob());
+            userEx.setBooks(user.getBooks());
             userEx.setRole("ROLE_STAFF");
             userRepository.save(userEx);
         }
