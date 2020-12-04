@@ -1,8 +1,11 @@
 package Ibook.Review.demo.service;
 
+import Ibook.Review.demo.entity.FruitWrapper;
 import Ibook.Review.demo.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public interface UserService {
@@ -11,9 +14,11 @@ public interface UserService {
 
     User getUserById(long id);
 
-    void update(long id, User userUpdate);
+    void update(long id, FruitWrapper bookName);
 
     void remove(long id);
 
     void createUser(User user);
+
+    List<User> getAllUser();
 }

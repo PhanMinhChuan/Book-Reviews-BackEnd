@@ -2,6 +2,7 @@ package Ibook.Review.demo.controller;
 
 import Ibook.Review.demo.CommonUtil.Const;
 import Ibook.Review.demo.entity.CustomUserDetails;
+import Ibook.Review.demo.entity.FruitWrapper;
 import Ibook.Review.demo.entity.User;
 import Ibook.Review.demo.jwt.JwtTokenProvider;
 import Ibook.Review.demo.service.UserService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("users")
@@ -65,10 +67,20 @@ public class UserController {
     }
 
     @PutMapping("{id}")
-    @PreAuthorize("hasRole('ADMIN') and hasRole('STAFF')")
-    public ResponseEntity<Void> updateUser(@PathVariable Integer id, @RequestBody User userUpdate) {
-        userService.update(id, userUpdate);
+    @PreAuthorize("hasRole('ADMIN')")
+    @ResponseBody
+    public ResponseEntity<Void> updateUser(@PathVariable Long id, @RequestBody FruitWrapper fruits) {
+        userService.update(id, fruits);
+        //for (int i = 0; i < fruits.getSize(); i++) {
+        //    System.out.println(fruits.getIcon(i));
+        //}
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<User>> findAllUser() {
+        return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")

@@ -17,4 +17,5 @@ public interface CommentService {
 
     void deleted(long id);
 
+    List<Comment> getAllComment();
 }

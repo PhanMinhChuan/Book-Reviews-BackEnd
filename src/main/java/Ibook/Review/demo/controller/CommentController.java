@@ -38,11 +38,16 @@ public class CommentController {
         return new ResponseEntity<>(commentService.findAllCommentByIdBook(idBook, page, size).getContent(), HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "{/id}", consumes = "application/json")
+    @PutMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> deletedComment(@PathVariable Long id ) {
+    public ResponseEntity<List<Comment>> findAllComment() {
+        return new ResponseEntity<>(commentService.getAllComment(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public void deletedComment(@PathVariable Long id ) {
         commentService.deleted(id);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,7 +31,7 @@ public class ContactController {
 
     @PostMapping(consumes = "application/json")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> UpdateContact(@RequestBody Contact contact) {
+    public ResponseEntity<Void> UpdateContact(@RequestBody @Valid Contact contact) {
         contactService.getUpdate(contact);
         return new ResponseEntity<>( HttpStatus.OK);
     }

@@ -23,6 +23,8 @@ public class AuthorController {
     @Autowired
     AuthorService authorService;
 
+
+
     @GetMapping(consumes = "application/json")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Author>> findAllAuthor(@RequestParam(value="page", defaultValue = Const.NUMBER_PAGE_START_DEFAULT) Integer page,
@@ -44,9 +46,11 @@ public class AuthorController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
-
-
+    @PutMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<Author>> findAllAuthor() {
+        return new ResponseEntity<>(authorService.getAllAuthor(), HttpStatus.OK);
+    }
 
     @DeleteMapping("{id}")
     @PreAuthorize("hasRole('ADMIN')")
@@ -54,8 +58,5 @@ public class AuthorController {
         authorService.remove(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
-
 
 }

@@ -19,5 +19,5 @@ public interface CategoriesService {
 
     public void updateCategories(long id, Categories categories);
 
-    Integer getSize();
+    List<Categories> getSize();
 }

@@ -56,7 +56,7 @@ public class CategoriesServiceImlp implements CategoriesService {
     }
 
     @Override
-    public Integer getSize() {
-        return categoriesRepository.findAll().size();
+    public List<Categories> getSize() {
+        return categoriesRepository.findAll();
     }
 }

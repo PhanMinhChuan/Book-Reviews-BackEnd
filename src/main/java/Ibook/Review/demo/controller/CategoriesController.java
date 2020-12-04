@@ -37,7 +37,7 @@ public class CategoriesController {
 
     @PutMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public Integer getSize(){
+    public List<Categories> getSize(){
         return categoriesService.getSize();
     }
 

@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import javax.activation.DataContentHandler;
+import java.util.List;
 
 @Service
 public interface AuthorService {
@@ -16,4 +17,5 @@ public interface AuthorService {
 
     void remove(long id);
 
+    List<Author> getAllAuthor();
 }

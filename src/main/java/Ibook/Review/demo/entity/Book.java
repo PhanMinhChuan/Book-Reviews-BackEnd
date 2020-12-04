@@ -1,5 +1,6 @@
 package Ibook.Review.demo.entity;
 
+import Ibook.Review.demo.CommonUtil.Status;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -34,6 +35,9 @@ public class Book {
 
     @Field("image")
     private String image;
+
+    @Field("status")
+    private Status.STATUS_BOOK statusBook;
 
     public long getId() {
         return id;
@@ -91,11 +95,19 @@ public class Book {
         this.image = image;
     }
 
+    public Status.STATUS_BOOK getStatusBook() {
+        return statusBook;
+    }
+
+    public void setStatusBook(Status.STATUS_BOOK statusBook) {
+        this.statusBook = statusBook;
+    }
+
     public Book () {
         super();
     }
 
-    public Book (long id, String name, List<Categories> cats, Author authors, String description, String detail, String image) {
+    public Book (long id, String name, List<Categories> cats, Author authors, String description, String detail, String image, Status.STATUS_BOOK statusBook) {
         this.id = id;
         this.name = name;
         this.cats = cats;
@@ -103,5 +115,6 @@ public class Book {
         this.description = description;
         this.detail = detail;
         this.image = image;
+        this.statusBook = statusBook;
     }
 }
