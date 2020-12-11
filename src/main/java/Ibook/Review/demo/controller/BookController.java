@@ -35,31 +35,37 @@ public class BookController {
 //    }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public Book getBookById(@PathVariable long id){
         return bookService.getBook(id);
     }
 
     @PostMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void UpdateStatusBookById(@PathVariable long id){
         bookService.UpdateStatusBookById(id);
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public boolean addBook(@RequestBody @Valid Book book){
         return bookService.addBook(book);
     }
 
     @PutMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Book> getAllBook(){
         return bookService.getAllBooks();
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public boolean updateBook(@PathVariable Long id, @RequestBody @Valid Book book){
         return bookService.updateBook(id, book);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public boolean deleteBoom(@PathVariable long id){
         return bookService.deleteBook(id);
     }
