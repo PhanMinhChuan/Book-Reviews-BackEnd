@@ -14,6 +14,8 @@ public interface BookService {
 
     public Book getBook(long id);
 
+//    public List<Book> getBooksFromCategory(String categoryName);
+
     public boolean addBook(Book book);
 
     public boolean updateBook(long id, Book book);

@@ -30,6 +30,12 @@ public class Author {
     @DBRef
     private List<Categories> cats;
 
+    @Field(value = "quocTich")
+    private String quocTich;
+
+    @Field(value = "image")
+    private String image;
+
     public long getId() {
         return id;
     }
@@ -70,17 +76,47 @@ public class Author {
         this.cats = cats;
     }
 
+    public LocalDateTime getBirth() {
+        return birth;
+    }
+
+    public List<Categories> getCats() {
+        return cats;
+    }
+
+    public void setCats(List<Categories> cats) {
+        this.cats = cats;
+    }
+
+    public String getQuocTich() {
+        return quocTich;
+    }
+
+    public void setQuocTich(String quocTich) {
+        this.quocTich = quocTich;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public Author() {
         super();
     }
 
-    public Author(long id, String name, LocalDateTime birth, Status.STATUS_AUTHOR sex, List<Categories> cats ) {
+    public Author(long id, String name, LocalDateTime birth, Status.STATUS_AUTHOR sex, List<Categories> cats, String quocTich, String image ) {
         super();
         this.id = id;
         this.name = name;
         this.birth = birth;
         this.sex = sex;
         this.cats = cats;
+        this.quocTich = quocTich;
+        this.image = image;
     }
 
 }

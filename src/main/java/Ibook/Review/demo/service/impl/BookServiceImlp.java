@@ -3,7 +3,9 @@ package Ibook.Review.demo.service.impl;
 import Ibook.Review.demo.CommonUtil.Status;
 import Ibook.Review.demo.entity.Author;
 import Ibook.Review.demo.entity.Book;
+import Ibook.Review.demo.entity.Categories;
 import Ibook.Review.demo.repository.BookRepository;
+import Ibook.Review.demo.repository.CategoriesRepository;
 import Ibook.Review.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +21,9 @@ public class BookServiceImlp implements BookService {
     @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
+    private CategoriesRepository categoriesRepository;
+
     public List<Book> getAllBooks(){
         return bookRepository.findAll();
     }
@@ -27,6 +32,15 @@ public class BookServiceImlp implements BookService {
     public Book getBook(long id) {
         return bookRepository.findById(id).get();
     }
+
+//    @Override
+//    public List<Book> getBooksFromCategory(String categoryName){
+//        Categories categories = categoriesRepository.findByName(categoryName).get(0);
+//        if(categories !=null) {
+//            return bookRepository.findByCategories(categories);
+//        }
+//        else return null;
+//    }
 
     @Override
     public boolean addBook(Book book) {
@@ -42,7 +56,7 @@ public class BookServiceImlp implements BookService {
     @Override
     public boolean updateBook(long id, Book book) {
         Book bookEx = bookRepository.findById(id).get();
-        bookEx.setAuthors(book.getAuthors());
+        bookEx.setAuthor(book.getAuthor());
         bookEx.setCategories(book.getCategories());
         bookEx.setDescription(book.getDescription());
         bookEx.setDetail(book.getDetail());
