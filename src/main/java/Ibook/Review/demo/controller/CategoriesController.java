@@ -20,14 +20,12 @@ public class CategoriesController {
     @Autowired
     CategoriesService categoriesService;
 
-
     @GetMapping(consumes = "application/json")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Categories>> getAllCategories(@RequestParam(value="page", defaultValue = Const.NUMBER_PAGE_START_DEFAULT) Integer page,
                                                              @RequestParam(value="size", defaultValue = Const.NUMBER_SIZE_PAGE_DEFAULT) Integer size){
         return new ResponseEntity<>(categoriesService.getAllCategories(page, size).getContent(), HttpStatus.OK);
     }
-
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")

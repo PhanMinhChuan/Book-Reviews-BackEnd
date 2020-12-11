@@ -2,6 +2,7 @@ package Ibook.Review.demo.controller;
 
 import Ibook.Review.demo.CommonUtil.Const;
 import Ibook.Review.demo.entity.Author;
+import Ibook.Review.demo.entity.Book;
 import Ibook.Review.demo.entity.Comment;
 import Ibook.Review.demo.entity.User;
 import Ibook.Review.demo.service.AuthorService;
@@ -23,8 +24,6 @@ public class AuthorController {
     @Autowired
     AuthorService authorService;
 
-
-
     @GetMapping(consumes = "application/json")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Author>> findAllAuthor(@RequestParam(value="page", defaultValue = Const.NUMBER_PAGE_START_DEFAULT) Integer page,
@@ -32,10 +31,9 @@ public class AuthorController {
         return new ResponseEntity<>(authorService.findAllAuthor(page, size).getContent(), HttpStatus.OK);
     }
 
-    @GetMapping(path = "{id}", consumes = "application/json")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Author> findAuthorById(@PathVariable Long id) {
-        return new ResponseEntity<>(authorService.findAuthorById(id), HttpStatus.OK);
+    @GetMapping("/{id}")
+    public List<Book> getBookByAuthorId(@PathVariable long id){
+        return authorService.getBookByAuthor(id);
     }
 
     @PostMapping

@@ -1,8 +1,10 @@
 package Ibook.Review.demo.service.impl;
 
 import Ibook.Review.demo.entity.Author;
+import Ibook.Review.demo.entity.Book;
 import Ibook.Review.demo.entity.Comment;
 import Ibook.Review.demo.repository.AuthorRepository;
+import Ibook.Review.demo.repository.BookRepository;
 import Ibook.Review.demo.repository.CommentRepository;
 import Ibook.Review.demo.service.AuthorService;
 import Ibook.Review.demo.service.CommentService;
@@ -20,10 +22,18 @@ public class AuthorServiceImpl implements AuthorService {
     @Autowired
     AuthorRepository authorRepository;
 
+    @Autowired
+    BookRepository bookRepository;
+
     @Override
     public Page<Author> findAllAuthor(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
         return (Page<Author>) authorRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Book> getBookByAuthor(long idAuthor){
+        return bookRepository.findByAuthorId(idAuthor);
     }
 
     @Override

@@ -3,6 +3,7 @@ package Ibook.Review.demo.controller;
 import Ibook.Review.demo.CommonUtil.Const;
 import Ibook.Review.demo.entity.Author;
 import Ibook.Review.demo.entity.Book;
+import Ibook.Review.demo.repository.CategoriesRepository;
 import Ibook.Review.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,11 @@ public class BookController {
                                                       @RequestParam(value="size", defaultValue = Const.NUMBER_SIZE_PAGE_DEFAULT) Integer size) {
         return new ResponseEntity<>(bookService.findAllBook(page, size).getContent(), HttpStatus.OK);
     }
+
+//    @GetMapping("/{categoryName}")
+//    public List<Book> findBooksFromCategory(@PathVariable String categoryName){
+//        return bookService.getBooksFromCategory(categoryName);
+//    }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")

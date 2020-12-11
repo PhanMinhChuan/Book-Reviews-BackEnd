@@ -23,9 +23,9 @@ public class Book {
     @DBRef
     private List<Categories> cats;
 
-    @Field("authors")
+    @Field("author")
     @DBRef
-    private Author authors;
+    private Author author;
 
     @Field("description")
     private String description;
@@ -63,12 +63,12 @@ public class Book {
         this.cats = cats;
     }
 
-    public Author getAuthors() {
-        return authors;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setAuthors(Author authors) {
-        this.authors = authors;
+    public void setAuthor(Author authors) {
+        this.author = authors;
     }
 
     public String getDescription() {
@@ -107,11 +107,11 @@ public class Book {
         super();
     }
 
-    public Book (long id, String name, List<Categories> cats, Author authors, String description, String detail, String image, Status.STATUS_BOOK statusBook) {
+    public Book (long id, String name, List<Categories> cats, Author author, String description, String detail, String image, Status.STATUS_BOOK statusBook) {
         this.id = id;
         this.name = name;
         this.cats = cats;
-        this.authors = authors;
+        this.author = author;
         this.description = description;
         this.detail = detail;
         this.image = image;
