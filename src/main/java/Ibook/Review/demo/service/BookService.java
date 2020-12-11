@@ -14,7 +14,7 @@ public interface BookService {
 
     public Book getBook(long id);
 
-    public boolean addBook(Book book);
+    public void addBook(Book book);
 
     public boolean updateBook(long id, Book book);
 

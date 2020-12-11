@@ -29,14 +29,9 @@ public class BookServiceImlp implements BookService {
     }
 
     @Override
-    public boolean addBook(Book book) {
-        try {
-            book.setId(bookRepository.count());
-            bookRepository.save(book);
-        }catch(Exception e) {
-            return false;
-        }
-        return true;
+    public void addBook(Book book) {
+        book.setId(bookRepository.findAll().get(bookRepository.findAll().size() - 1).getId() + 1);
+        bookRepository.save(book);
     }
 
     @Override

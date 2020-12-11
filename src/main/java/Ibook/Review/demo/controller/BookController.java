@@ -42,8 +42,8 @@ public class BookController {
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public boolean addBook(@RequestBody @Valid Book book){
-        return bookService.addBook(book);
+    public void addBook(@RequestBody @Valid Book book){
+        bookService.addBook(book);
     }
 
     @PutMapping

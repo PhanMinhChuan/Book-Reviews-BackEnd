@@ -18,4 +18,6 @@ public interface AuthorService {
     void remove(long id);
 
     List<Author> getAllAuthor();
+
+    Author findAuthorById(long id);
 }

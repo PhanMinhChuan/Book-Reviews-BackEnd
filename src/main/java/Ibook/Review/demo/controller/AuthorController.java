@@ -32,6 +32,12 @@ public class AuthorController {
         return new ResponseEntity<>(authorService.findAllAuthor(page, size).getContent(), HttpStatus.OK);
     }
 
+    @GetMapping(path = "{id}", consumes = "application/json")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Author> findAuthorById(@PathVariable Long id) {
+        return new ResponseEntity<>(authorService.findAuthorById(id), HttpStatus.OK);
+    }
+
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> createUser(@RequestBody Author author){

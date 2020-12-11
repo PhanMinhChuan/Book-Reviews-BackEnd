@@ -28,8 +28,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public void createAuthor(Author author) {
-        long id = authorRepository.findAll().size();
-        author.setId(id);
+        author.setId(authorRepository.findAll().get(authorRepository.findAll().size() - 1).getId() + 1);
         authorRepository.save(author);
     }
 
@@ -40,7 +39,6 @@ public class AuthorServiceImpl implements AuthorService {
         authorEx.setSex(author.getSex());
         authorEx.setBirth(author.getBrith());
         authorEx.setCategories(author.getCategories());
-
         authorRepository.save(authorEx);
     }
 
@@ -52,5 +50,10 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public List<Author> getAllAuthor() {
         return authorRepository.findAll();
+    }
+
+    @Override
+    public Author findAuthorById(long id) {
+        return authorRepository.findAllById(id);
     }
 }
