@@ -198,12 +198,16 @@ public class IBookApplication implements CommandLineRunner{
 //        User user2 = new User(3, "letuantu", passwordEncoder.encode("123"), listBook2, "ROLE_USER");
 //        User user3 = new User(4, "ngoctrinh", passwordEncoder.encode("123"), listBook4, "ROLE_USER");
 //        User user4 = new User(5, "phantuan", passwordEncoder.encode("123"), listBook3, "ROLE_USER");
+        User user5 = new User(6, "phamngocha", passwordEncoder.encode("123"), null, "ROLE_USER");
+        User user6 = new User(7, "lechung", passwordEncoder.encode("123"), null, "ROLE_USER");
+        User user7 = new User(8, "ngoctuan", passwordEncoder.encode("123"), null, "ROLE_USER");
+        User user8 = new User(9, "phananh", passwordEncoder.encode("123"), null, "ROLE_USER");
 //
 //        userRepository.save(user);
-//        userRepository.save(user1);
-//        userRepository.save(user2);
-//        userRepository.save(user3);
-//        userRepository.save(user4);
+        userRepository.save(user5);
+        userRepository.save(user6);
+        userRepository.save(user7);
+        userRepository.save(user8);
 //
 //        Comment com1 = new Comment(1, book1, user1, "Nội dung hay");
 //        Comment com2 = new Comment(2, book4, user3, "Đáng xem");

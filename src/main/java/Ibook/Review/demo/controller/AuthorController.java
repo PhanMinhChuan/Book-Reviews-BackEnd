@@ -40,7 +40,7 @@ public class AuthorController {
     }
 
     @PutMapping("{id}")
-    @PreAuthorize("hasRole('ADMIN') and hasRole('STAFF')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> updateUser(@PathVariable long id, @RequestBody Author author) {
         authorService.update(id, author);
         return new ResponseEntity<>(HttpStatus.OK);
