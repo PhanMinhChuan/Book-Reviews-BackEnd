@@ -31,9 +31,14 @@ public class AuthorController {
         return new ResponseEntity<>(authorService.findAllAuthor(page, size).getContent(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/books")
     public List<Book> getBookByAuthorId(@PathVariable long id){
         return authorService.getBookByAuthor(id);
+    }
+
+    @GetMapping("/{id}")
+    public Author geAuthorById(@PathVariable long id){
+        return authorService.findAuthorById(id);
     }
 
     @PostMapping
@@ -62,5 +67,4 @@ public class AuthorController {
         authorService.remove(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }

@@ -193,7 +193,7 @@ public class IBookApplication implements CommandLineRunner{
         List<Book> listBook4 = new ArrayList<>();
         listBook4.add(book1);listBook4.add(book2);listBook4.add(book3);listBook4.add(book4);
 
-        User user = new User(1, "admin", passwordEncoder.encode("123"), null, "ROLE_ADMIN");
+        User user = new User(1, "admin", "Nguyễn Tuấn Đạt", "bkdn.ntdat@gmail.com",passwordEncoder.encode("123"), null, "ROLE_ADMIN");
         User user1 = new User(2, "minhchuan", passwordEncoder.encode("123"), listBook1, "ROLE_USER");
         User user2 = new User(3, "letuantu", passwordEncoder.encode("123"), listBook2, "ROLE_USER");
         User user3 = new User(4, "ngoctrinh", passwordEncoder.encode("123"), listBook4, "ROLE_USER");
