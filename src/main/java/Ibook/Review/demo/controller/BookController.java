@@ -25,14 +25,9 @@ public class BookController {
     @GetMapping(consumes = "application/json")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Book>> findAllBook(@RequestParam(value="page", defaultValue = Const.NUMBER_PAGE_START_DEFAULT) Integer page,
-                                                      @RequestParam(value="size", defaultValue = Const.NUMBER_SIZE_PAGE_DEFAULT) Integer size) {
+                                                  @RequestParam(value="size", defaultValue = Const.NUMBER_SIZE_PAGE_DEFAULT) Integer size) {
         return new ResponseEntity<>(bookService.findAllBook(page, size).getContent(), HttpStatus.OK);
     }
-
-//    @GetMapping("/{categoryName}")
-//    public List<Book> findBooksFromCategory(@PathVariable String categoryName){
-//        return bookService.getBooksFromCategory(categoryName);
-//    }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
@@ -41,7 +36,6 @@ public class BookController {
     }
 
     @PostMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     public void UpdateStatusBookById(@PathVariable long id){
         bookService.UpdateStatusBookById(id);
     }
@@ -60,8 +54,8 @@ public class BookController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public boolean updateBook(@PathVariable Long id, @RequestBody @Valid Book book){
-        return bookService.updateBook(id, book);
+    public void updateBook(@PathVariable Long id, @RequestBody @Valid Book book){
+        bookService.updateBook(id, book);
     }
 
     @DeleteMapping("/{id}")

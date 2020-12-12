@@ -32,8 +32,8 @@ public class AuthorController {
     }
 
     @GetMapping("/{id}")
-    public List<Book> getBookByAuthorId(@PathVariable long id){
-        return authorService.getBookByAuthor(id);
+    public Author getBookByAuthorId(@PathVariable long id){
+        return authorService.findAuthorById(id);
     }
 
     @PostMapping
