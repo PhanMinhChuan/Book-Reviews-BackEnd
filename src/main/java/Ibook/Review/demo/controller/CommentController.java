@@ -23,7 +23,7 @@ public class CommentController {
     CommentService commentService;
 
     @GetMapping(consumes = "application/json")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ResponseEntity<List<Comment>> findAllComment(@RequestParam(value="page", defaultValue = Const.NUMBER_PAGE_START_DEFAULT) Integer page,
                                                         @RequestParam(value="size", defaultValue = Const.NUMBER_SIZE_PAGE_DEFAULT) Integer size) {
         return new ResponseEntity<>(commentService.findAllComment(page, size).getContent(), HttpStatus.OK);

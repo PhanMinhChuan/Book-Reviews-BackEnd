@@ -11,11 +11,11 @@ public class Categories {
     private long id;
 
     @Field(value = "categoryName")
-    private String categoryName;
+    private String name;
 
     public Categories(long id, String name){
         this.id = id;
-        this.categoryName = name;
+        this.name = name;
     }
 
     public Categories() {
@@ -30,10 +30,10 @@ public class Categories {
     }
 
     public String getName() {
-        return categoryName;
+        return name;
     }
 
     public void setName(String name) {
-        this.categoryName = name;
+        this.name = name;
     }
 }

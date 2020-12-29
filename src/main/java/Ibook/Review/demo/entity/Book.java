@@ -39,6 +39,9 @@ public class Book {
     @Field("status")
     private Status.STATUS_BOOK statusBook;
 
+    @Field("rating")
+    private float rating;
+
     public long getId() {
         return id;
     }
@@ -103,11 +106,19 @@ public class Book {
         this.statusBook = statusBook;
     }
 
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
     public Book () {
         super();
     }
 
-    public Book (long id, String name, List<Categories> cats, Author author, String description, String detail, String image, Status.STATUS_BOOK statusBook) {
+    public Book (long id, String name, List<Categories> cats, Author author, String description, String detail, String image, Status.STATUS_BOOK statusBook, float rating) {
         this.id = id;
         this.name = name;
         this.cats = cats;
@@ -116,5 +127,6 @@ public class Book {
         this.detail = detail;
         this.image = image;
         this.statusBook = statusBook;
+        this.rating = rating;
     }
 }

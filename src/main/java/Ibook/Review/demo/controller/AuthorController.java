@@ -25,7 +25,7 @@ public class AuthorController {
     AuthorService authorService;
 
     @GetMapping(consumes = "application/json")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ResponseEntity<List<Author>> findAllAuthor(@RequestParam(value="page", defaultValue = Const.NUMBER_PAGE_START_DEFAULT) Integer page,
                                                       @RequestParam(value="size", defaultValue = Const.NUMBER_SIZE_PAGE_DEFAULT) Integer size) {
         return new ResponseEntity<>(authorService.findAllAuthor(page, size).getContent(), HttpStatus.OK);
@@ -35,9 +35,9 @@ public class AuthorController {
     public List<Book> getBookByAuthorId(@PathVariable long id){
         return authorService.getBookByAuthor(id);
     }
-
+    
     @GetMapping("/{id}")
-    public Author geAuthorById(@PathVariable long id){
+    public Author getAuthorById(@PathVariable long id){
         return authorService.findAuthorById(id);
     }
 

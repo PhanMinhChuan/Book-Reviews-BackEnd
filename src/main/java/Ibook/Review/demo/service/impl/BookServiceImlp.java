@@ -43,23 +43,29 @@ public class BookServiceImlp implements BookService {
 //    }
 
     @Override
+    public Page<Book> getBookForUser(Integer page, Integer size){
+        Pageable pageable = PageRequest.of(page, size);
+        return (Page<Book>) bookRepository.findByStatusBook(pageable);
+    }
+
+    @Override
     public void addBook(Book book) {
         book.setId(bookRepository.findAll().get(bookRepository.findAll().size() - 1).getId() + 1);
+        book.setStatusBook(Status.STATUS_BOOK.UNAPPROVED);
         bookRepository.save(book);
     }
 
     @Override
-    public boolean updateBook(long id, Book book) {
+    public void updateBook(long id, Book book) {
         Book bookEx = bookRepository.findById(id).get();
         bookEx.setAuthor(book.getAuthor());
         bookEx.setCategories(book.getCategories());
         bookEx.setDescription(book.getDescription());
         bookEx.setDetail(book.getDetail());
         bookEx.setImage(book.getImage());
-        bookEx.setName(bookEx.getName());
-        bookEx.setStatusBook(Status.STATUS_BOOK.UNAPPROVED);
+        bookEx.setName(book.getName());
+        //bookEx.setStatusBook(Status.STATUS_BOOK.UNAPPROVED);
         bookRepository.save(bookEx);
-        return true;
     }
 
     @Override

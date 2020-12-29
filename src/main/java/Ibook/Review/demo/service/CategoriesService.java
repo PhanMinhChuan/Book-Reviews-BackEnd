@@ -1,5 +1,6 @@
 package Ibook.Review.demo.service;
 
+import Ibook.Review.demo.entity.Book;
 import Ibook.Review.demo.entity.Categories;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,8 @@ public interface CategoriesService {
     public Categories getCatById(long id);
 
     public Page<Categories> getAllCategories(Integer page, Integer size);
+
+    public Page<Book> getBookByCategoryId(long id, Integer page, Integer size);
 
     public void addCategories(Categories categories);
 

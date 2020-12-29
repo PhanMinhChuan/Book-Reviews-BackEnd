@@ -23,7 +23,7 @@ public class ContactController {
     ContactService contactService;
 
     @GetMapping(consumes = "application/json")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ResponseEntity<Contact> getContact() {
         Contact contact = contactService.getContact();
         return new ResponseEntity<>(contact, HttpStatus.OK);

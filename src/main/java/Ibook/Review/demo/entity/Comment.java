@@ -24,6 +24,9 @@ public class Comment {
     @Field(value = "comment")
     private String comment;
 
+    @Field(value = "rating")
+    private float rating;
+
     public long getId() {
         return id;
     }
@@ -60,12 +63,13 @@ public class Comment {
         super();
     }
 
-    public Comment (long id, Book book, User user, String comment) {
+    public Comment (long id, Book book, User user, String comment, float rating) {
         super();
         this.id = id;
         this.book = book;
         this.user = user;
         this.comment = comment;
+        this.rating = rating;
     }
 
 

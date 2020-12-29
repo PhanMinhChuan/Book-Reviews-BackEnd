@@ -2,6 +2,7 @@ package Ibook.Review.demo.service;
 
 import Ibook.Review.demo.entity.FruitWrapper;
 import Ibook.Review.demo.entity.User;
+import Ibook.Review.demo.entity.UserDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,8 @@ public interface UserService {
     User getUserById(long id);
 
     void update(long id, FruitWrapper bookName);
+
+    void update(UserDTO user);
 
     void remove(long id);
 

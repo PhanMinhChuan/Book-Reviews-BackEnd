@@ -1,9 +1,6 @@
 package Ibook.Review.demo.service.impl;
 
-import Ibook.Review.demo.entity.Book;
-import Ibook.Review.demo.entity.CustomUserDetails;
-import Ibook.Review.demo.entity.FruitWrapper;
-import Ibook.Review.demo.entity.User;
+import Ibook.Review.demo.entity.*;
 import Ibook.Review.demo.repository.BookRepository;
 import Ibook.Review.demo.repository.UserRepository;
 import Ibook.Review.demo.service.UserService;
@@ -73,13 +70,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userRepository.save(user);
     }
 
-//    @Override
-//    public void update(long id, User userUpdate) {
-//        User user = userRepository.findById(id);
-//        user.setPassword(userUpdate.getPassword());
-//        user.setBooks(userUpdate.getBooks());
-//        userRepository.save(user);
-//    }
+    @Override
+    public void update(UserDTO userUpdate) {
+        User user = userRepository.findById(userUpdate.getId());
+        boolean update = passwordEncoder.matches(userUpdate.getPrevPassword(), user.getPassword());
+        if(update) {
+            user.setEmail(userUpdate.getEmail());
+            user.setName(userUpdate.getName());
+            if(!userUpdate.getPassword().equals(""))
+                user.setPassword(passwordEncoder.encode(userUpdate.getPassword()));
+            user.setBooks(userUpdate.getBooks());
+            userRepository.save(user);
+        }
+    }
 
     @Override
     public void remove(long id) {
@@ -93,6 +96,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             userEx.setId(userRepository.findAll().get(userRepository.findAll().size() - 1).getId() + 1);
             userEx.setUsername(user.getUsername());
             userEx.setPassword(passwordEncoder.encode(user.getPassword()));
+            userEx.setEmail(user.getEmail());
+            userEx.setUsername(user.getUsername());
             userEx.setBooks(user.getBooks());
             userEx.setRole("ROLE_USER");
             userRepository.save(userEx);

@@ -1,6 +1,7 @@
 package Ibook.Review.demo.controller;
 
 import Ibook.Review.demo.CommonUtil.Const;
+import Ibook.Review.demo.entity.Book;
 import Ibook.Review.demo.entity.Categories;
 import Ibook.Review.demo.service.CategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,17 @@ public class CategoriesController {
     CategoriesService categoriesService;
 
     @GetMapping(consumes = "application/json")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ResponseEntity<List<Categories>> getAllCategories(@RequestParam(value="page", defaultValue = Const.NUMBER_PAGE_START_DEFAULT) Integer page,
                                                              @RequestParam(value="size", defaultValue = Const.NUMBER_SIZE_PAGE_DEFAULT) Integer size){
         return new ResponseEntity<>(categoriesService.getAllCategories(page, size).getContent(), HttpStatus.OK);
+    }
+
+    @GetMapping("/books/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
+    public ResponseEntity<List<Book>> getBookByCategoryId(@PathVariable long id, @RequestParam(value="page", defaultValue = Const.NUMBER_PAGE_START_DEFAULT) Integer page,
+                                                             @RequestParam(value="size", defaultValue = Const.NUMBER_SIZE_PAGE_DEFAULT) Integer size){
+        return new ResponseEntity<>(categoriesService.getBookByCategoryId(id, page, size).getContent(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

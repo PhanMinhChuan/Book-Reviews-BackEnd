@@ -23,31 +23,31 @@ public class BookController {
     BookService bookService;
 
     @GetMapping(consumes = "application/json")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ResponseEntity<List<Book>> findAllBook(@RequestParam(value="page", defaultValue = Const.NUMBER_PAGE_START_DEFAULT) Integer page,
-                                                      @RequestParam(value="size", defaultValue = Const.NUMBER_SIZE_PAGE_DEFAULT) Integer size) {
+                                                  @RequestParam(value="size", defaultValue = Const.NUMBER_SIZE_PAGE_DEFAULT) Integer size) {
         return new ResponseEntity<>(bookService.findAllBook(page, size).getContent(), HttpStatus.OK);
     }
 
-//    @GetMapping("/{categoryName}")
-//    public List<Book> findBooksFromCategory(@PathVariable String categoryName){
-//        return bookService.getBooksFromCategory(categoryName);
-//    }
+    @GetMapping("/user")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
+    public ResponseEntity<List<Book>> findAllBookForUser(@RequestParam(value="page", defaultValue = Const.NUMBER_PAGE_START_DEFAULT) Integer page,
+                                                  @RequestParam(value="size", defaultValue = Const.NUMBER_SIZE_PAGE_DEFAULT) Integer size) {
+        return new ResponseEntity<>(bookService.getBookForUser(page, size).getContent(), HttpStatus.OK);
+    }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public Book getBookById(@PathVariable long id){
         return bookService.getBook(id);
     }
 
     @PostMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     public void UpdateStatusBookById(@PathVariable long id){
         bookService.UpdateStatusBookById(id);
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public void addBook(@RequestBody @Valid Book book){
         bookService.addBook(book);
     }
@@ -60,8 +60,8 @@ public class BookController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public boolean updateBook(@PathVariable Long id, @RequestBody @Valid Book book){
-        return bookService.updateBook(id, book);
+    public void updateBook(@PathVariable Long id, @RequestBody @Valid Book book){
+        bookService.updateBook(id, book);
     }
 
     @DeleteMapping("/{id}")

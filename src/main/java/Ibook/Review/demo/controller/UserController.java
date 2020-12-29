@@ -4,6 +4,7 @@ import Ibook.Review.demo.CommonUtil.Const;
 import Ibook.Review.demo.entity.CustomUserDetails;
 import Ibook.Review.demo.entity.FruitWrapper;
 import Ibook.Review.demo.entity.User;
+import Ibook.Review.demo.entity.UserDTO;
 import Ibook.Review.demo.jwt.JwtTokenProvider;
 import Ibook.Review.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping(consumes = "application/json")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ResponseEntity<List<User>> findAllUser(@RequestParam(value="page", defaultValue = Const.NUMBER_PAGE_START_DEFAULT) Integer page,
                                                   @RequestParam(value="size", defaultValue = Const.NUMBER_SIZE_PAGE_DEFAULT) Integer size) {
         return new ResponseEntity<>(userService.findAllUser(page, size).getContent(), HttpStatus.OK);
@@ -74,6 +75,11 @@ public class UserController {
         //    System.out.println(fruits.getIcon(i));
         //}
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/updateUser")
+    public void updateUser(@RequestBody UserDTO userUpdate){
+        userService.update(userUpdate);
     }
 
     @PutMapping

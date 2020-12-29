@@ -1,6 +1,8 @@
 package Ibook.Review.demo.service.impl;
 
+import Ibook.Review.demo.entity.Book;
 import Ibook.Review.demo.entity.Categories;
+import Ibook.Review.demo.repository.BookRepository;
 import Ibook.Review.demo.repository.CategoriesRepository;
 import Ibook.Review.demo.service.CategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class CategoriesServiceImlp implements CategoriesService {
     @Autowired
     private CategoriesRepository categoriesRepository;
 
+    @Autowired
+    private BookRepository bookRepository;
+
     public Categories getCatById(long id){
         return categoriesRepository.findById(id).get();
         //return null;
@@ -27,6 +32,10 @@ public class CategoriesServiceImlp implements CategoriesService {
         return categoriesRepository.findAll(pageable);
     }
 
+    public Page<Book> getBookByCategoryId(long id, Integer page, Integer size){
+        Pageable pageable = PageRequest.of(page, size);
+        return bookRepository.findBookByCategoryById(id, "APPROVED",pageable);
+    }
 
     public void addCategories(Categories categories){
         //if(!categoriesRepository.existsByName(categories.getName())) {

@@ -23,4 +23,5 @@ public interface AuthorService {
     List<Author> getAllAuthor();
 
     Author findAuthorById(long id);
+
 }
